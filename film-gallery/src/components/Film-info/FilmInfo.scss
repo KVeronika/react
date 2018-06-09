@@ -1,0 +1,75 @@
+@import '../../styles/colors.scss';
+
+.app__header-details {
+    display: flex;
+    
+    .details {
+        &__film-cover {
+            display: flex;
+            justify-content: flex-start;
+            margin-right: 100px;
+    
+            img {
+                height: 400px;
+                width: 300px;
+            }
+        }
+    
+        &__info {
+            display: flex;
+            flex-grow: 1;
+            flex-direction: column;
+            padding-top: 20px;
+            color: $grey;
+
+            .info {
+                &__main-info {
+                    display: flex;
+
+                    .main-info {
+                        &__film-name {
+                            color: $main-red;
+                            text-transform: capitalize;
+                            font-size: 30px;
+                            font-weight: bold;
+                            margin: 0 0 10px 0;
+                        }
+
+                        &__subtitle, &__description {
+                            font-size: 18px;
+                            margin-top: 0;
+                        }
+
+                        &__rating {
+                            width: 50px;
+                            height: 50px;
+                            border-radius: 50%;
+                            border: 1px solid $light-green;
+                            margin-left: 20px;
+                            padding: 11px 9px;
+                            color: $light-green;
+                            font-size: 22px;
+                        }
+                    }
+                }
+
+                &__description {
+                    font-size: 18px;
+                }
+
+                &__director, &__actors {
+                    font-size: 14px;
+                }
+
+                &__figures {
+                    color: $white;
+                    font-weight: bold;
+
+                    .figures__year {
+                        margin-right: 30px;
+                    }
+                }
+            }
+        }
+    }
+}

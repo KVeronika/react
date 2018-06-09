@@ -1,0 +1,38 @@
+@import '../../styles/colors.scss';
+
+.app__header {
+  background-color: $header-grey;
+  color: $white;
+  padding: 10px 80px 40px;
+
+  &-title {
+    display: flex;
+    align-items: center;
+  }
+
+  &-search , &-details{
+    margin-top: 50px;
+  } 
+}
+
+.header-title {
+  &__label {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-start;
+    color: $main-red;
+  }
+
+  &__search-button {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+
+    & button {
+      height: 30px;
+      padding: 0 20px;
+      text-transform: uppercase;
+      color: $main-red;
+    }
+  }
+}

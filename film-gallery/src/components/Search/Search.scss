@@ -1,0 +1,68 @@
+@import '../../styles/colors.scss';
+
+.header-search {
+  &__label {
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+
+  &__input {
+    height: 50px;
+    width: 100%;
+    padding: 0 20px;
+    background-color: $black;
+    color: $white;
+    border: 0;
+    border-bottom: 2px solid $main-red;
+    outline: 0;
+  }
+
+  &__controls-container {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    text-transform: uppercase;
+
+    .controls-container {
+      &__filters {
+        display: flex;
+        flex-grow: 1;
+        justify-content: flex-start;
+        height: 30px;
+        align-items: center;
+        font-size: 14px;
+
+        .filters__option,
+        .filters__label {
+          margin: 0 10px;
+        }
+
+        .filters__option {
+          height: 30px;
+          padding: 0 20px;
+          display: flex;
+          align-items: center;
+          background-color: $dark-grey;
+          input {
+            display: none;
+          }
+        }
+      }
+
+      &__submit {
+        display: flex;
+        flex-grow: 1;
+        justify-content: flex-end;
+
+        .submit__submit-button {
+          height: 40px;
+          width: 200px;
+          text-transform: uppercase;
+          background-color: $main-red;
+          color: $white;
+          border: 0;
+        }
+      }
+    }
+  }
+}

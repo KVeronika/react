@@ -1,0 +1,13 @@
+@import '../../styles/colors.scss';
+
+.app__footer {
+  height: 60px;
+  background-color: $dark-grey;
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+
+  .footer__text {
+    color: $main-red;
+  }
+}

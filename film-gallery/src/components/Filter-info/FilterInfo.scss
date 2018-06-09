@@ -1,0 +1,41 @@
+@import '../../styles/colors.scss';
+
+.header__filter-info {
+    height: 50px;
+    background-color: $light-grey;
+    color: $black;
+    display: flex;
+    align-items: center;
+    padding: 10px 80px;
+    font-weight: bold;
+  
+    .filter-info {
+      &__results-founded {
+        display: flex;
+        flex-grow: 1;
+        justify-content: flex-start;
+  
+        .results-founded {
+          &__count {
+            margin-right: 5px;
+          }
+        }
+      }
+  
+      &__sorting-options {
+        display: flex;
+        flex-grow: 1;
+        justify-content: flex-end;
+  
+        .sorting-options {
+          &__option {
+            margin-left: 15px;
+  
+            input {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }

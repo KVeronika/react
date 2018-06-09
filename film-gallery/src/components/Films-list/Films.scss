@@ -1,0 +1,24 @@
+@import '../../styles/colors.scss';
+@import '../../styles/variables.scss';
+
+.app__films-container {
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  padding: 60px 80px;
+
+  @media (max-width: $screen-md-max) {
+    justify-content: space-around;
+  }
+
+  @media (min-width: $screen-md-max) {
+    justify-content: space-between;
+  }
+
+  .films-container__film {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: 0 20px 40px;
+  }
+}
