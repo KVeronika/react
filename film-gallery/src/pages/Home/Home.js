@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 
-import { Header, FilmsList, Footer, Search } from "../../components";
+import { Header, FilmsList, Footer, Search } from '../../components';
 
-import "./Home.scss";
+import './Home.scss';
 
 export const Home = () => (
-  <div>
-    <Header>
-        <Search />
-    </Header>
-    <FilmsList />
-    <Footer />
-  </div>
+    <div>
+        <Header>
+            <Search />
+        </Header>
+        <FilmsList />
+        <Footer />
+    </div>
 );

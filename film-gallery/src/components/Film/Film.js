@@ -1,18 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Film.scss';
 
-export const Film = (props) => (
+const Film = props => (
     <div className='films-container__film'>
-        <img
-            className='film__cover'
-            src={require('../../image.png')}
-            alt='film cover'
-        />
+        <img className='film__cover' alt='film cover' src={require('../../image.png')} />
         <div className='film__main-info'>
-            <p className='main-info__title'>{ props.title }</p>
-            <div className='main-info__year'>{ props.year }</div>
+            <p className='main-info__title'>{props.title}</p>
+            <div className='main-info__year'>{props.year}</div>
         </div>
-        <p className='film__category'>{ props.type }</p>
+        <p className='film__category'>{props.type}</p>
     </div>
 );
+
+Film.propTypes = {
+    title: PropTypes.string,
+    year: PropTypes.string,
+    type: PropTypes.string
+};
+
+export { Film };
