@@ -22,11 +22,11 @@ export const fetchFilmsFail = error => {
     };
 };
 
-export const fetchFilmsListByTitle = data => dispatch => {
+export const fetchFilmsList = dispatch => data => {
     dispatch(fetchFilmsStart());
     return API.getFilms(data)
         .then(
-            (response) => dispatch(fetchFilmsSuccess(response.data)),
+            (response) => dispatch(fetchFilmsSuccess(response)),
             (error) => dispatch(fetchFilmsFail(error))
         );
 };

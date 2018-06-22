@@ -24,31 +24,6 @@
     text-transform: uppercase;
 
     .controls-container {
-      &__filters {
-        display: flex;
-        flex-grow: 1;
-        justify-content: flex-start;
-        height: 30px;
-        align-items: center;
-        font-size: 14px;
-
-        .filters__option,
-        .filters__label {
-          margin: 0 10px;
-        }
-
-        .filters__option {
-          height: 30px;
-          padding: 0 20px;
-          display: flex;
-          align-items: center;
-          background-color: $dark-grey;
-          input {
-            display: none;
-          }
-        }
-      }
-
       &__submit {
         display: flex;
         flex-grow: 1;

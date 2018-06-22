@@ -1,13 +1,13 @@
-import * as actionTypes from './actions';
+import * as actionTypes from './constants';
 
-export const filmsReducer = (state = {}, action) => {
+export const films = (state = {}, action) => {
     switch (action.type) {
-        case actionTypes.fetchFilmsStart:
+        case actionTypes.FETCH_FILMS_STARTED:
             return { ...state, isFetching: true };
-        case actionTypes.fetchFilmsSuccess:
-            return { ...state, films: action.filmList };
-        case actionTypes.fetchFilmsFail:
-            return { ...state, error: action.error };
+        case actionTypes.FETCH_FILMS_SUCCEEDED:
+            return { ...state, films: action.films, isFetching: false };
+        case actionTypes.FETCH_FILM_FAILED:
+            return { ...state, error: action.error, isFetching: false };
         default:
             return state;
     }

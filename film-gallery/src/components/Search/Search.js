@@ -1,15 +1,36 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { fetchFilmsList } from '../../modules/Films/actions';
 
 import './Search.scss';
 
-class Search extends Component {
-    state = {
-        inputText: '',
-        parameter: ''
-    };
+const mapDispatchToProps = dispatch => ({
+    fetchFilms: dispatch(fetchFilmsList)
+});
 
-    handleSubmit(event) {
+class Search extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            inputText: ''
+        };
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleInput = this.handleInput.bind(this);
+    }
+
+    handleSubmit = (event) => {
         event.preventDefault();
+        this.props.fetchFilms(this.state.inputText);
+    }
+
+    handleInput = (event) => {
+        this.setState({
+            inputText: event.target.value
+        });
     }
 
     render() {
@@ -17,19 +38,8 @@ class Search extends Component {
             <div className='app__header-search'>
                 <p className='header-search__label'>find your movie</p>
                 <form onSubmit={this.handleSubmit}>
-                    <input className='header-search__input' name='filter' />
+                    <input className='header-search__input' name='filter' onInput={this.handleInput} />
                     <div className='header-search__controls-container'>
-                        <div className='controls-container__filters'>
-                            <span className='filters__label'>search by</span>
-                            <label className='filters__option'>
-                                <input type='radio' value='title' name='filter' />
-                                title
-                            </label>
-                            <label className='filters__option'>
-                                <input type='radio' value='director' name='filter' />
-                                director
-                            </label>
-                        </div>
                         <div className='controls-container__submit'>
                             <button className='submit__submit-button'>
                                 search
@@ -42,4 +52,10 @@ class Search extends Component {
     }
 }
 
-export { Search };
+Search.propTypes = {
+    fetchFilms: PropTypes.func.isRequired
+};
+
+const WrappedComponent = connect(null, mapDispatchToProps)(Search);
+
+export { WrappedComponent as Search };
