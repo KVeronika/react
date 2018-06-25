@@ -5,7 +5,7 @@ import './Film.scss';
 
 const Film = props => (
     <div className='films-container__film'>
-        <img className='film__cover' alt='film cover' src={require('../../image.png')} />
+        <img className='film__cover' alt='film cover' src={props.image} />
         <div className='film__main-info'>
             <p className='main-info__title'>{props.title}</p>
             <div className='main-info__year'>{props.year}</div>
@@ -17,7 +17,8 @@ const Film = props => (
 Film.propTypes = {
     title: PropTypes.string,
     year: PropTypes.string,
-    type: PropTypes.string
+    type: PropTypes.string,
+    image: PropTypes.string
 };
 
 export { Film };

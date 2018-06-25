@@ -10,7 +10,7 @@ export const processFilms = (films) => {
             status: film.show.status,
             runtime: film.show.runtime,
             releaseDate: film.show.premiered,
-            images: film.show.images,
+            images: film.show.image,
             summary: film.show.summary
         };
     });

@@ -5,11 +5,11 @@ import { Header, FilmsList, Footer, Search } from '../../components';
 import './Home.scss';
 
 export const Home = () => (
-    <div>
+    <React.Fragment>
         <Header>
             <Search />
         </Header>
         <FilmsList />
         <Footer />
-    </div>
+    </React.Fragment>
 );
