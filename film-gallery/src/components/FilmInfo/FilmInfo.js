@@ -1,38 +1,75 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
+
+import { fetchFilmInfo } from '../../modules/Film/actions';
 
 import './FilmInfo.scss';
 
-export const FilmInfo = () => (
-    <div className='app__header-details'>
-        <div className='details__film-cover'>
-            <img src={require('../../image.png')} alt='film cover' />
-        </div>
-        <div className='details__info'>
-            <div className='info__main-info'>
-                <div>
-                    <p className='main-info__film-name'>some film name</p>
-                    <p className='main-info__subtitle'>some film subtitle</p>
+const mapStateToProps = (state) => ({
+    film: state.film.film
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    fetchFilmInfo: dispatch(fetchFilmInfo)
+});
+
+class FilmInfo extends Component {
+    componentDidMount() {
+        this.props.fetchFilmInfo(this.props.match.params.id);
+    }
+
+    render() {
+        return (
+            <div className='app__header-details'>
+                <div className='details__film-cover'>
+                    <img
+                        src={this.props.film.image ? this.props.film.image : require('../../image.png')}
+                        alt='film cover' />
                 </div>
-                <div className='main-info__rating'>4.1</div>
+                <div className='details__info'>
+                    <div className='info__main-info'>
+                        <div>
+                            <p className='main-info__film-name'>{this.props.film.name}</p>
+                            <p className='main-info__subtitle'>{this.props.film.tagline}</p>
+                        </div>
+                        <div className='main-info__rating'>{this.props.film.rating}</div>
+                    </div>
+                    <div className='info__figures'>
+                        <span className='figures__year'>{this.props.film.releaseDate}</span>
+                        <span className='figures__duration'>{this.props.film.runtime}</span>
+                    </div>
+                    <p className='info__description'>{this.props.film.summary}</p>
+                    <p className='info__director'>{this.props.film.budget}</p>
+                    <p className='info__actors'>{this.props.film.genres ? this.props.film.genres.join(', ') : ''}</p>
+                </div>
             </div>
-            <div className='info__figures'>
-                <span className='figures__year'>1994</span>
-                <span className='figures__duration'>154 min</span>
-            </div>
-            <p className='info__description'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim
-                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum.
-            </p>
-            <p className='info__director'>some film director</p>
-            <p className='info__actors'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-        </div>
-    </div>
-);
+        );
+    }
+}
+
+FilmInfo.propTypes = {
+    fetchFilmInfo: PropTypes.func.isRequired,
+    film: PropTypes.shape({
+        image: PropTypes.string,
+        name: PropTypes.string,
+        tagline: PropTypes.string,
+        rating: PropTypes.number,
+        releaseDate: PropTypes.string,
+        runtime: PropTypes.number,
+        summary: PropTypes.string,
+        budget: PropTypes.string,
+        genres: PropTypes.arrayOf(PropTypes.string)
+    }),
+    router: PropTypes.object,
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            id: PropTypes.string
+        })
+    })
+};
+
+const WrappedFilmInfo = withRouter(connect(mapStateToProps, mapDispatchToProps)(FilmInfo));
+
+export { WrappedFilmInfo as FilmInfo };

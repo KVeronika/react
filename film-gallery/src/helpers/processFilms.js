@@ -1,17 +1,20 @@
-export const processFilms = (films) => {
+export const processFilmList = (films) => {
     return films.map((film) => {
-        return {
-            id: film.show.id,
-            name: film.show.name,
-            rating: film.score,
-            url: film.show.url,
-            language: film.show.language,
-            genres: film.show.genres,
-            status: film.show.status,
-            runtime: film.show.runtime,
-            releaseDate: film.show.premiered,
-            images: film.show.image,
-            summary: film.show.summary
-        };
+        return processFilm(film);
     });
+};
+
+export const processFilm = (film) => {
+    return {
+        id: film.id,
+        name: film.title,
+        releaseDate: film.release_date,
+        image: film.poster_path,
+        genres: film.genres,
+        rating: film.vote_average,
+        runtime: film.runtime,
+        summary: film.overview,
+        tagline: film.tagline,
+        budget: film.budget
+    };
 };

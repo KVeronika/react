@@ -21,4 +21,11 @@
     flex-direction: column;
     margin: 0 20px 40px;
   }
+
+  .films-container__no-films {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+  }
 }

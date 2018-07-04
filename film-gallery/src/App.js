@@ -15,7 +15,7 @@ class App extends Component {
                     <BrowserRouter>
                         <Switch>
                             <Route path='/search' component={Home} />
-                            <Route path='/film' component={Details} />
+                            <Route path='/film/:id' component={Details} />
                             <Redirect from='/' to='/search' />
                             <Route component={NoMatch} />
                         </Switch>

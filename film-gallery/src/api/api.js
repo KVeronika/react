@@ -1,22 +1,27 @@
 import axios from 'axios';
 
-import { processFilms } from '../helpers/processFilms';
+import { processFilmList, processFilm } from '../helpers/processFilms';
 
 const API = {};
 const instance = axios.create({
-    baseURL: 'http://api.tvmaze.com'
+    baseURL: 'http://react-cdp-api.herokuapp.com'
 });
 
 API.getFilms = (query) => {
-    return instance.get('/search/shows?', {
+    return instance.get('/movies?', {
         params: {
-            q: query
+            search: query.search,
+            searchBy: query.searchBy
         }
     })
-        .then((response) => processFilms(response.data));
+        .then((response) => processFilmList(response.data.data));
 };
 
-// API.getFilmById = (id) => {
-// }
+API.getFilmById = (id) => {
+    return instance.get(`/movies/${id}`)
+        .then((response) => {
+            return processFilm(response.data);
+        });
+};
 
 export { API };
