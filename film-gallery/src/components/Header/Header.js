@@ -1,27 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { FilterInfo } from '../../components';
 
 import './Header.scss';
 
-const Header = props => (
-    <div>
-        <header className='app__header'>
-            <div className='app__header-title'>
-                <div className='header-title__label'>netflixroulette</div>
-                <div className='header-title__search-button'>
-                    <button>Search</button>
+class Header extends Component {
+    state = {
+        isDetailsPage: this.props.match.path.search(/\/film/) >= 0
+    };
+
+    render() {
+        const redirectToHomeButton = (<div className='header-title__search-button'>
+            <Link to='/'><button>Search</button></Link>
+        </div>);
+
+        return (<div>
+            <header className='app__header'>
+                <div className='app__header-title'>
+                    <div className='header-title__label'>netflixroulette</div>
+                    { this.state.isDetailsPage ? redirectToHomeButton : null }
                 </div>
-            </div>
-            {props.children}
-        </header>
-        <FilterInfo />
-    </div>
-);
+                {this.props.children}
+            </header>
+            <FilterInfo />
+        </div>);
+    }
+}
 
 Header.propTypes = {
-    children: PropTypes.element
+    children: PropTypes.element.isRequired,
+    match: PropTypes.shape({
+        path: PropTypes.string
+    })
 };
 
-export { Header };
+const HeaderWithRouter = withRouter(Header);
+
+export { HeaderWithRouter as Header };

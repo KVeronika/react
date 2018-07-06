@@ -21,31 +21,37 @@ class FilmInfo extends Component {
     }
 
     render() {
-        return (
-            <div className='app__header-details'>
-                <div className='details__film-cover'>
-                    <img
-                        src={this.props.film.image ? this.props.film.image : require('../../image.png')}
-                        alt='film cover' />
-                </div>
-                <div className='details__info'>
-                    <div className='info__main-info'>
-                        <div>
-                            <p className='main-info__film-name'>{this.props.film.name}</p>
-                            <p className='main-info__subtitle'>{this.props.film.tagline}</p>
+        if (this.props.film) {
+            return (
+                <div className='app__header-details'>
+                    <div className='details__film-cover'>
+                        <img
+                            src={this.props.film.image ? this.props.film.image : require('../../image.png')}
+                            alt='film cover' />
+                    </div>
+                    <div className='details__info'>
+                        <div className='info__main-info'>
+                            <div>
+                                <p className='main-info__film-name'>{this.props.film.name}</p>
+                                <p className='main-info__genres'>
+                                    {this.props.film.genres ? this.props.film.genres.join(', ') : ''}
+                                </p>
+                            </div>
+                            <div className='main-info__rating'>{this.props.film.rating}</div>
                         </div>
-                        <div className='main-info__rating'>{this.props.film.rating}</div>
+                        <div className='info__figures'>
+                            <span className='figures__year'>{this.props.film.releaseDate}</span>
+                            <span className='figures__duration'>{this.props.film.runtime} min</span>
+                        </div>
+                        <p className='info__description'>{this.props.film.summary}</p>
+                        <p className='info__tagline'>Tagline: {this.props.film.tagline}</p>
+                        <p className='info__budget'>Budget: {this.props.film.budget}$</p>
                     </div>
-                    <div className='info__figures'>
-                        <span className='figures__year'>{this.props.film.releaseDate}</span>
-                        <span className='figures__duration'>{this.props.film.runtime}</span>
-                    </div>
-                    <p className='info__description'>{this.props.film.summary}</p>
-                    <p className='info__director'>{this.props.film.budget}</p>
-                    <p className='info__actors'>{this.props.film.genres ? this.props.film.genres.join(', ') : ''}</p>
                 </div>
-            </div>
-        );
+            );
+        }
+
+        return null;
     }
 }
 
@@ -56,13 +62,12 @@ FilmInfo.propTypes = {
         name: PropTypes.string,
         tagline: PropTypes.string,
         rating: PropTypes.number,
-        releaseDate: PropTypes.string,
+        releaseDate: PropTypes.number,
         runtime: PropTypes.number,
         summary: PropTypes.string,
-        budget: PropTypes.string,
+        budget: PropTypes.number,
         genres: PropTypes.arrayOf(PropTypes.string)
     }),
-    router: PropTypes.object,
     match: PropTypes.shape({
         params: PropTypes.shape({
             id: PropTypes.string

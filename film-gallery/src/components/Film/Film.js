@@ -19,7 +19,7 @@ const Film = props => (
 
 Film.propTypes = {
     title: PropTypes.string.isRequired,
-    year: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired

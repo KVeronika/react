@@ -8,7 +8,7 @@ export const processFilm = (film) => {
     return {
         id: film.id,
         name: film.title,
-        releaseDate: film.release_date,
+        releaseDate: new Date(film.release_date).getFullYear(),
         image: film.poster_path,
         genres: film.genres,
         rating: film.vote_average,

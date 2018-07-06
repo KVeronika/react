@@ -13,42 +13,42 @@ const mapStateToProps = (state) => {
 
 class FilterInfo extends Component {
     state = {
-        isDetailsPage: this.props.match.path.search(/\/film/)
+        isDetailsPage: this.props.match.path.search(/\/film/) >= 0
     };
 
     render() {
-        const content = (<React.Fragment>
-            <div className='filter-info__results-founded'>
-                <span className='results-founded__count'>
-                    {this.props.countOfFound}
-                </span>
-                <span className='results-founded__label'>
-                    movies found
-                </span>
-            </div>
-            <div className='filter-info__sorting-options'>
-                <span>Sort by</span>
-                <label className='sorting-options__option'>
-                    <input type='radio' value='date' name='sort' />
-                    release date
-                </label>
-                <label className='sorting-options__option'>
-                    <input type='radio' value='rating' name='sort' />
-                    rating
-                </label>
-            </div>
-        </React.Fragment>);
+        if (!this.state.isDetailsPage) {
+            return (<div className='header__filter-info'>
+                <React.Fragment>
+                    <div className='filter-info__results-founded'>
+                        <span className='results-founded__count'>
+                            {this.props.countOfFound}
+                        </span>
+                        <span className='results-founded__label'>
+                            movies found
+                        </span>
+                    </div>
+                    <div className='filter-info__sorting-options'>
+                        <span>Sort by</span>
+                        <label className='sorting-options__option'>
+                            <input type='radio' value='date' name='sort' />
+                            release date
+                        </label>
+                        <label className='sorting-options__option'>
+                            <input type='radio' value='rating' name='sort' />
+                            rating
+                        </label>
+                    </div>
+                </React.Fragment>
+            </div>);
+        }
 
-        return (
-            <div className='header__filter-info'>
-                {this.state.isDetailsPage < 0 ? content : ''}
-            </div>
-        );
+        return <div className='header__filter-info' />;
     }
 }
 
 FilterInfo.propTypes = {
-    countOfFound: PropTypes.number,
+    countOfFound: PropTypes.number.isRequired,
     match: PropTypes.shape({
         path: PropTypes.string
     })

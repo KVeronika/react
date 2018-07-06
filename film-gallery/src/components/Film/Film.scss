@@ -1,13 +1,15 @@
 @import '../../styles/colors.scss';
+@import '../../styles/variables.scss';
 
 .film {
   &__cover {
     height: 300px;
-    width: 250px;
+    width: $film-block-width;
   }
 
   &__category {
     margin: 10px 0;
+    max-width: $film-block-width;
   }
 
   &__main-info {
@@ -19,6 +21,7 @@
       &__title {
         margin: 10px 0;
         text-transform: uppercase;
+        max-width: 200px;
       }
 
       &__year {

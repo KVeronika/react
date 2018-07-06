@@ -7,6 +7,11 @@
   flex-wrap: wrap;
   padding: 60px 80px;
 
+  a {
+    text-decoration: none;
+    color: $black;
+  }
+
   @media (max-width: $screen-md-max) {
     justify-content: space-around;
   }
@@ -27,5 +32,10 @@
     justify-content: center;
     align-items: center;
     flex: 1;
+
+    .no-films__label {
+        font-size: 40px;
+        color: $grey;
+    }
   }
 }

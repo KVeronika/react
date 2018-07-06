@@ -13,15 +13,19 @@ const mapStateToProps = (state) => ({
 
 class FilmsList extends Component {
     render() {
-        let content;
+        const noFilms = (<div className='app__films-container'>
+            <div className='films-container__no-films'>
+                <span className='no-films__label'>No films found</span>
+            </div>
+        </div>);
 
         if (this.props.match.path.search(/\/film/) < 0) {
-            if (this.props.films.length === 0) {
-                content = (<div className='films-container__no-films'>
-                    <span className='no-films__label'>No films found</span>
-                </div>);
-            } else {
-                content = this.props.films.map((film) => {
+            if (this.props.films) {
+                if (this.props.films.length === 0) {
+                    return (noFilms);
+                }
+
+                return (<div className='app__films-container'>{this.props.films.map((film) => {
                     return (<Film
                         key={film.id}
                         id={film.id}
@@ -29,13 +33,13 @@ class FilmsList extends Component {
                         year={film.releaseDate}
                         type={film.genres.join(', ')}
                         image={film.image ? film.image : require('../../image.png')} />);
-                });
+                })}</div>);
             }
+
+            return noFilms;
         }
 
-        return (
-            <div className='app__films-container'>{content}</div>
-        );
+        return noFilms;
     }
 }
 
